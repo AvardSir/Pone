@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddur3um4wba58"]
+
+[ext_resource type="Script" path="res://shot.gd" id="1_a8c76"]
+[ext_resource type="Texture2D" uid="uid://d02a0s1yqh7ye" path="res://magick-png-7.png" id="2_skm60"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_md5iv"]
+radius = 32.311
+
+[node name="shot" type="Area2D"]
+position = Vector2(38, 76)
+script = ExtResource("1_a8c76")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.27309, 0.27309)
+texture = ExtResource("2_skm60")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_md5iv")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
