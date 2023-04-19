@@ -15,7 +15,7 @@ var SHOT=preload("res://shot.tscn")
 #@onready var marker=$Marker2D
 signal shot_shot(shot)
 func _physics_process(delta):
-	if Input.is_action_just_pressed("пробел"):
+	if Input.is_action_fjust_pressed("пробел"):
 		var shot=SHOT.instantiate()
 		shot.position=$Marker2D.global_position
 		get_parent().add_child(shot)
