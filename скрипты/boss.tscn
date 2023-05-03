@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://3d8vi7r8eqba"]
+
+[ext_resource type="Script" path="res://скрипты/boss.gd" id="1_sard5"]
+[ext_resource type="Texture2D" uid="uid://b87sgxmqgcocq" path="res://картинки/1581372967_preview_gachimuchi-Billy-Herrington-песочница-5051031.png" id="1_xqqcw"]
+[ext_resource type="Texture2D" uid="uid://dfovk51prkfla" path="res://картинки/left.png" id="2_ii45c"]
+[ext_resource type="Texture2D" uid="uid://wqfwco0i0ida" path="res://картинки/right.png" id="3_bnamr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1li5g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xqqcw")
+}],
+"loop": true,
+"name": &"front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ii45c")
+}],
+"loop": true,
+"name": &"left_hand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bnamr")
+}],
+"loop": true,
+"name": &"right_hand",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m4cht"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qfw3b"]
+
+[node name="BOSS" type="Area2D"]
+script = ExtResource("1_sard5")
+
+[node name="animation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1li5g")
+animation = &"front"
+
+[node name="1" type="CollisionShape2D" parent="."]
+scale = Vector2(6.7956, -19.6556)
+shape = SubResource("CapsuleShape2D_m4cht")
+
+[node name="2" type="CollisionShape2D" parent="."]
+position = Vector2(8, 93)
+scale = Vector2(19.1393, -15.1125)
+shape = SubResource("CapsuleShape2D_qfw3b")
+
+[node name="hands" type="CollisionShape2D" parent="."]
+position = Vector2(-3.00002, 213)
+scale = Vector2(27.733, 7.62921)
+shape = SubResource("CapsuleShape2D_qfw3b")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

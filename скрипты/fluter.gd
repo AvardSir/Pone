@@ -23,11 +23,11 @@ func _physics_process(delta):
 		var shott=SHOT.instantiate()
 		shott.direction=sign($shot_position.position.x)
 		#print(sign($shot_position.position.x))
-		print(sign(shott.direction))
+		#print(sign(shott.direction))
 		#shott.position=$shot_position.global_position
 		shott.position=$shot_position.global_position
 		get_parent().add_child(shott)
-		print(shott.position)
+		#print(shott.position)
 		
 		
 	# Add the gravity.

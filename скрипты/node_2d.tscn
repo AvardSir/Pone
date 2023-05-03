@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://e4uidd6tr1p0"]
+[gd_scene load_steps=16 format=3 uid="uid://e4uidd6tr1p0"]
 
 [ext_resource type="Script" path="res://скрипты/node_2d.gd" id="1_35x5d"]
 [ext_resource type="Texture2D" uid="uid://560s0ga5mm0i" path="res://картинки/проба.png" id="2_s3838"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bb8mwvuhg8qpb" path="res://картинки/Tileset_Free/Tileset/Tileset.png" id="6_oktng"]
 [ext_resource type="PackedScene" uid="uid://b2lvj0uu4ml4m" path="res://скрипты/fluter.tscn" id="7_00sum"]
 [ext_resource type="PackedScene" uid="uid://b31bf6wbll4ra" path="res://gacha.tscn" id="8_1xki1"]
+[ext_resource type="PackedScene" uid="uid://3d8vi7r8eqba" path="res://скрипты/boss.tscn" id="8_c1x0g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jy7b5"]
 texture = ExtResource("2_s3838")
@@ -2327,5 +2328,20 @@ position = Vector2(103, 813)
 [node name="gacha2" parent="gacha" instance=ExtResource("8_1xki1")]
 position = Vector2(2099, -639)
 
+[node name="gacha2" parent="." instance=ExtResource("8_1xki1")]
+position = Vector2(623, 2117)
+
+[node name="gacha2" parent="gacha2" instance=ExtResource("8_1xki1")]
+position = Vector2(2099, -639)
+
+[node name="gacha3" parent="." instance=ExtResource("8_1xki1")]
+position = Vector2(677, 2488)
+
+[node name="gacha2" parent="gacha3" instance=ExtResource("8_1xki1")]
+position = Vector2(2099, -639)
+
 [node name="fluter" parent="." instance=ExtResource("7_00sum")]
-position = Vector2(862, 2256)
+position = Vector2(1436, 2225)
+
+[node name="BOSS" parent="." instance=ExtResource("8_c1x0g")]
+position = Vector2(206, 2342)

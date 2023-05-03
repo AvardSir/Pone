@@ -52,7 +52,7 @@ func _physics_process (delta):
 	
 	global_position += movement_vector.rotated(rotation)*speed*direction	
 func _on_visible_on_screen_notifier_2d_screen_exited():
-	print('i DONNNT exist!!!')
+	#print('i DONNNT exist!!!')
 	queue_free()
 
 
