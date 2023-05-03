@@ -11,15 +11,23 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var coin=0
 func add_coin():
 	coin+=1
-var SHOT=preload("res://shot.tscn")	
+const SHOT=preload("res://shot.tscn")	
 #@onready var marker=$Marker2D
 signal shot_shot(shot)
+func dead():
+	$fluter.play("dead")
+	$CollisionShape2D.set_deferred("disabled",true)
 func _physics_process(delta):
-	if Input.is_action_fjust_pressed("пробел"):
-		var shot=SHOT.instantiate()
-		shot.position=$Marker2D.global_position
-		get_parent().add_child(shot)
-		print('gg')
+	
+	if Input.is_action_just_pressed("пробел"):
+		var shott=SHOT.instantiate()
+		shott.direction=sign($shot_position.position.x)
+		#print(sign($shot_position.position.x))
+		print(sign(shott.direction))
+		#shott.position=$shot_position.global_position
+		shott.position=$shot_position.global_position
+		get_parent().add_child(shott)
+		print(shott.position)
 		
 		
 	# Add the gravity.
@@ -35,10 +43,18 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("влево", "вправо")
 	
+	if Input.is_action_just_pressed("влево"):
+		$fluter.flip_h=false
+		$shot_position.position.x=-abs($shot_position.position.x)
+	elif Input.is_action_just_pressed("вправо"):
+		$fluter.flip_h=true
+		$shot_position.position.x=abs($shot_position.position.x)
 	if direction:
 		velocity.x = direction * SPEED
+		
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		
 
 	move_and_slide()
 	

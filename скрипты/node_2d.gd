@@ -10,4 +10,4 @@ func _ready():
 func _process(delta):
 	$stats/CanvasLayer/Label.text = str($fluter.coin)
 	
-	pass
+	pass		

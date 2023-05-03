@@ -1,24 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2lvj0uu4ml4m"]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Texture2D" uid="uid://dn4blvmuo10hv" path="res://картинки/pony/fluter.png" id="1_1ogqa"]
-[ext_resource type="Script" path="res://скрипты/fluter.gd" id="1_bpv0c"]
+[ext_resource type="Script" path="res://fluter.gd" id="1_bpv0c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2qvhw"]
 radius = 329.102
 
 [node name="fluter" type="CharacterBody2D"]
-scale = Vector2(0.25686, 0.25686)
+position = Vector2(63, -10)
 script = ExtResource("1_bpv0c")
 
+[node name="shot_position" type="Node2D" parent="."]
+position = Vector2(-570, -271)
+
 [node name="fluter" type="Sprite2D" parent="."]
+position = Vector2(-67, 4.5)
 texture = ExtResource("1_1ogqa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-67, 4.5)
 shape = SubResource("CircleShape2D_2qvhw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(-416.569, -210.231)
+position = Vector2(-67, 4.5)
+zoom = Vector2(0.7, 0.7)
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

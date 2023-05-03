@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cjm27vc8kg87w"]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://coin.gd" id="1_52erb"]
 [ext_resource type="Texture2D" uid="uid://b1x37ejn0b331" path="res://картинки/sDZl9LE4MnAeOhfGsA1PSeZKRfNGZbOd.png" id="1_w5yh0"]

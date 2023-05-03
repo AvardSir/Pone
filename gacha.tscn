@@ -1,0 +1,117 @@
+[gd_scene load_steps=8 format=3 uid="uid://b31bf6wbll4ra"]
+
+[ext_resource type="Texture2D" uid="uid://bg2j84ithb0q4" path="res://картинки/3.png" id="2_wqwix"]
+[ext_resource type="Texture2D" uid="uid://bxbk34nk86vrl" path="res://5be164e80a0b2166e8722a69.png" id="2_wslim"]
+[ext_resource type="Texture2D" uid="uid://cmk08vveo8q3m" path="res://картинки/2.png" id="3_77eji"]
+[ext_resource type="Texture2D" uid="uid://c3hgs7b216py" path="res://картинки/1.png" id="4_nr8uk"]
+
+[sub_resource type="GDScript" id="GDScript_dayng"]
+script/source = "extends CharacterBody2D
+
+
+const SPEED = 150.0
+const JUMP_VELOCITY = -400.0
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting(\"physics/2d/default_gravity\")
+
+
+var direction = 1
+var is_alive=true
+
+func change_dir():
+	$AnimatedSprite2D.flip_h=!$AnimatedSprite2D.flip_h
+	direction*=-1
+
+func kill():
+	is_alive=false
+	velocity.x=0
+	$AnimatedSprite2D.play(\"dead\")
+	$colusion_gacha.disabled=true
+	$colusion_gacha.queue_free()
+func _physics_process(delta):
+	
+		
+	#$AnimatedSprite.play(\"walk\")
+	velocity.y += (gravity * delta)
+	#velocity = move_and_slide(velocity, FLOOR)|
+	if is_on_wall():
+		print(direction)
+		direction*=-1
+	if is_alive:
+		$AnimatedSprite2D.play(\"live\")
+		velocity.x = direction * SPEED
+	
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y += gravity * delta
+	
+		#change_dir()
+	# Handle Jump.
+	#if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		#velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	#var direction #= Input.get_axis(\"ui_left\", \"ui_right\")
+	#if direction:
+	
+	#else:
+		#velocity.x = move_toward(velocity.x, 0, SPEED)
+
+	move_and_slide()
+
+
+func _on_area_2d_body_entered(body):
+	if \"fluter\"==body.name:
+		body.dead()
+	pass # Replace with function body.
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mxdmr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_nr8uk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_77eji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wqwix")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wslim")
+}],
+"loop": true,
+"name": &"live",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4jbms"]
+
+[node name="gacha" type="CharacterBody2D"]
+script = SubResource("GDScript_dayng")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mxdmr")
+animation = &"dead"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="colusion_gacha2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-3, 17)
+scale = Vector2(9.08448, 17.3932)
+shape = SubResource("RectangleShape2D_4jbms")
+
+[node name="colusion_gacha" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 17)
+scale = Vector2(8.7168, 16.6892)
+shape = SubResource("RectangleShape2D_4jbms")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://b2lvj0uu4ml4m"]
+
+[ext_resource type="Texture2D" uid="uid://dn4blvmuo10hv" path="res://картинки/pony/fluter.png" id="1_1ogqa"]
+[ext_resource type="Script" path="res://скрипты/fluter.gd" id="1_bpv0c"]
+[ext_resource type="Texture2D" uid="uid://dajs6w0elvoo6" path="res://картинки/pony/1.png" id="3_tipry"]
+[ext_resource type="Texture2D" uid="uid://dopdjdiw85pcj" path="res://картинки/pony/2.png" id="4_ava15"]
+[ext_resource type="Texture2D" uid="uid://cgdtitb0ab72a" path="res://картинки/pony/3.png" id="5_8qlrl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m3cg4"]
+radius = 7.60994
+height = 17.2405
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_foubo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_tipry")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ava15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_8qlrl")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1ogqa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="fluter" type="CharacterBody2D"]
+position = Vector2(63, -10)
+scale = Vector2(0.153199, 0.153199)
+script = ExtResource("1_bpv0c")
+
+[node name="shot_position" type="Node2D" parent="."]
+position = Vector2(-570, -271)
+
+[node name="fluter4" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-67, 4.5)
+texture = ExtResource("1_1ogqa")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-58.1632, -5.26032)
+scale = Vector2(39.2814, -38.7653)
+shape = SubResource("CapsuleShape2D_m3cg4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-67, 4.5)
+zoom = Vector2(0.7, 0.7)
+
+[node name="fluter" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_foubo")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
