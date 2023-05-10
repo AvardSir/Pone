@@ -51,6 +51,17 @@ func tp_to_point():
 		#gacha.position=$shot_position.global_position
 		gacha.position=get_parent().find_child(s).global_position
 		gacha.direction=dir
+		randomize()
+		#var sc=int(randi_range(1,4))
+		var sc=randf()
+		print(sc)
+		while 0.2>sc or sc>0.4:
+			#sc=int(randi_range(1,4))
+			sc=randf()
+			
+		print(sc)
+		var sc2 = Vector2(sc,sc)
+		gacha.set_scale(sc2)
 		get_parent().add_child(gacha)
 
 func _physics_process(delta):

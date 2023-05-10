@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://e4uidd6tr1p0"]
+[gd_scene load_steps=18 format=3 uid="uid://e4uidd6tr1p0"]
 
 [ext_resource type="Script" path="res://скрипты/node_2d.gd" id="1_35x5d"]
 [ext_resource type="Texture2D" uid="uid://560s0ga5mm0i" path="res://картинки/проба.png" id="2_s3838"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b31bf6wbll4ra" path="res://gacha.tscn" id="8_1xki1"]
 [ext_resource type="PackedScene" uid="uid://crbdc81glv1b8" path="res://платформа_земли.tscn" id="9_hd1ai"]
 [ext_resource type="PackedScene" uid="uid://new8lkp2ebs3" path="res://boss.tscn" id="9_ubmpp"]
+[ext_resource type="PackedScene" uid="uid://qa11qgecvsku" path="res://стена_для_мобов.tscn" id="10_iq7rn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jy7b5"]
 texture = ExtResource("2_s3838")
@@ -2404,3 +2405,21 @@ position = Vector2(1496, 2206)
 
 [node name="66" type="Node2D" parent="boss_position/minion_position/456456"]
 position = Vector2(1501, 2477)
+
+[node name="стена_для_мобов" parent="." instance=ExtResource("10_iq7rn")]
+position = Vector2(357, 2526)
+
+[node name="стена_для_мобов2" parent="." instance=ExtResource("10_iq7rn")]
+position = Vector2(367, 2246)
+
+[node name="стена_для_мобов3" parent="." instance=ExtResource("10_iq7rn")]
+position = Vector2(336, 1996)
+
+[node name="стена_для_мобов4" parent="." instance=ExtResource("10_iq7rn")]
+position = Vector2(1421, 1975)
+
+[node name="стена_для_мобов5" parent="." instance=ExtResource("10_iq7rn")]
+position = Vector2(1423, 2251)
+
+[node name="стена_для_мобов6" parent="." instance=ExtResource("10_iq7rn")]
+position = Vector2(1423, 2510)
