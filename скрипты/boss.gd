@@ -10,9 +10,10 @@ func _ready():
 func _process(delta):
 	pass
 
-
+func kill():
+	print('fa')
 func _on_body_entered(body):
-	if "shot" in body.name:
-		print('fak')
+	if "fluter" in body.name:
+		#print('fak')
 		pass
 	pass # Replace with function body.

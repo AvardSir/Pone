@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://crbdc81glv1b8"]
+
+[ext_resource type="Texture2D" uid="uid://c7lla3htdyuyc" path="res://platform.png" id="1_k8uk4"]
+[ext_resource type="Script" path="res://платформа_земли.gd" id="1_qwh6y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68ntj"]
+size = Vector2(416, 86)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yewrt"]
+size = Vector2(426, 117)
+
+[node name="платформа_земли" type="StaticBody2D"]
+scale = Vector2(2.273, 1)
+script = ExtResource("1_qwh6y")
+
+[node name="колизия_плафтормы" type="CollisionShape2D" parent="."]
+position = Vector2(-3, -2)
+shape = SubResource("RectangleShape2D_68ntj")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_k8uk4")
+
+[node name="зона сверху" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="зона сверху"]
+position = Vector2(-1, -18.5)
+shape = SubResource("RectangleShape2D_yewrt")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="зона сверху" to="." method="_on___body_entered"]
+[connection signal="body_exited" from="зона сверху" to="." method="_on___body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

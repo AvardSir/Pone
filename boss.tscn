@@ -1,0 +1,69 @@
+[gd_scene load_steps=9 format=3 uid="uid://new8lkp2ebs3"]
+
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="1_7yfvy"]
+[ext_resource type="Texture2D" uid="uid://b87sgxmqgcocq" path="res://картинки/1581372967_preview_gachimuchi-Billy-Herrington-песочница-5051031.png" id="2_cduha"]
+[ext_resource type="Texture2D" uid="uid://dfovk51prkfla" path="res://картинки/left.png" id="3_0isb1"]
+[ext_resource type="Texture2D" uid="uid://wqfwco0i0ida" path="res://картинки/right.png" id="4_p1m6n"]
+[ext_resource type="AudioStream" uid="uid://coo6wo5karn44" path="res://Gorillaz - Feel good inc. (Gachi mix).mp3" id="5_sg75w"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n5ix3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cduha")
+}],
+"loop": false,
+"name": &"front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_0isb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0isb1")
+}],
+"loop": false,
+"name": &"left_hand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_p1m6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_p1m6n")
+}],
+"loop": false,
+"name": &"right_hand",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_26yy2"]
+radius = 15.0097
+height = 30.0194
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8r0dm"]
+
+[node name="BOSS" type="CharacterBody2D"]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("1_7yfvy")
+
+[node name="animation_ee" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_n5ix3")
+animation = &"left_hand"
+
+[node name="1" type="CollisionShape2D" parent="."]
+position = Vector2(-55, 14)
+scale = Vector2(6.7956, -19.6556)
+shape = SubResource("CapsuleShape2D_26yy2")
+
+[node name="hands" type="CollisionShape2D" parent="."]
+position = Vector2(-52, -414)
+scale = Vector2(27.733, 7.62921)
+shape = SubResource("CapsuleShape2D_8r0dm")
+disabled = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_sg75w")

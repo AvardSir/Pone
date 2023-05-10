@@ -33,27 +33,32 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_m4cht"]
+radius = 15.0097
+height = 30.0194
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qfw3b"]
 
-[node name="BOSS" type="Area2D"]
+[node name="BOSS_old_version" type="Area2D"]
+light_mask = 5
+visibility_layer = 5
 script = ExtResource("1_sard5")
 
 [node name="animation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1li5g")
-animation = &"front"
+animation = &"right_hand"
 
 [node name="1" type="CollisionShape2D" parent="."]
+position = Vector2(-55, 14)
 scale = Vector2(6.7956, -19.6556)
 shape = SubResource("CapsuleShape2D_m4cht")
 
 [node name="2" type="CollisionShape2D" parent="."]
-position = Vector2(8, 93)
+position = Vector2(-392, 63)
 scale = Vector2(19.1393, -15.1125)
 shape = SubResource("CapsuleShape2D_qfw3b")
 
 [node name="hands" type="CollisionShape2D" parent="."]
-position = Vector2(-3.00002, 213)
+position = Vector2(-52, -414)
 scale = Vector2(27.733, 7.62921)
 shape = SubResource("CapsuleShape2D_qfw3b")
 

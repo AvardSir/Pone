@@ -8,6 +8,8 @@ radius = 32.311
 
 [node name="shot" type="Area2D"]
 rotation = 3.14159
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("1_a8c76")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

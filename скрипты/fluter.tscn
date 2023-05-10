@@ -36,8 +36,12 @@ animations = [{
 }]
 
 [node name="fluter" type="CharacterBody2D"]
+light_mask = 7
+visibility_layer = 7
 position = Vector2(63, -10)
 scale = Vector2(0.153199, 0.153199)
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_bpv0c")
 
 [node name="shot_position" type="Node2D" parent="."]
@@ -60,4 +64,17 @@ zoom = Vector2(0.7, 0.7)
 [node name="fluter" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_foubo")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="fluter_static" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="fluter_static"]
+position = Vector2(-71.802, -13.0549)
+scale = Vector2(39.2082, 38.1847)
+shape = SubResource("CapsuleShape2D_m3cg4")
+disabled = true
+
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

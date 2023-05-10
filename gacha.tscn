@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://b31bf6wbll4ra"]
+[gd_scene load_steps=9 format=3 uid="uid://b31bf6wbll4ra"]
 
 [ext_resource type="Texture2D" uid="uid://bg2j84ithb0q4" path="res://картинки/3.png" id="2_wqwix"]
 [ext_resource type="Texture2D" uid="uid://bxbk34nk86vrl" path="res://5be164e80a0b2166e8722a69.png" id="2_wslim"]
 [ext_resource type="Texture2D" uid="uid://cmk08vveo8q3m" path="res://картинки/2.png" id="3_77eji"]
 [ext_resource type="Texture2D" uid="uid://c3hgs7b216py" path="res://картинки/1.png" id="4_nr8uk"]
+[ext_resource type="AudioStream" uid="uid://coo6wo5karn44" path="res://Gorillaz - Feel good inc. (Gachi mix).mp3" id="5_3b2il"]
 
 [sub_resource type="GDScript" id="GDScript_dayng"]
 script/source = "extends CharacterBody2D
@@ -36,7 +37,7 @@ func _physics_process(delta):
 	velocity.y += (gravity * delta)
 	#velocity = move_and_slide(velocity, FLOOR)|
 	if is_on_wall():
-		print(direction)
+		#print(direction)
 		direction*=-1
 	if is_alive:
 		$AnimatedSprite2D.play(\"live\")
@@ -96,6 +97,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4jbms"]
 
 [node name="gacha" type="CharacterBody2D"]
+scale = Vector2(0.399, 0.399)
+collision_layer = 5
+collision_mask = 5
 script = SubResource("GDScript_dayng")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -113,5 +117,8 @@ shape = SubResource("RectangleShape2D_4jbms")
 position = Vector2(-3, 17)
 scale = Vector2(8.7168, 16.6892)
 shape = SubResource("RectangleShape2D_4jbms")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_3b2il")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
