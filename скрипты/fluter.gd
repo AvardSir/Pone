@@ -18,7 +18,10 @@ func add_coin():
 func dead():
 	$fluter.play("dead")
 	$CollisionShape2D.set_deferred("disabled",true)
-
+	get_parent().dead_charecter()
+	
+	#var next_scen=preload("res://скрипты/node_2d.tscn")
+	
 func kill():
 	pass
 #@onready var timer=%Timer
