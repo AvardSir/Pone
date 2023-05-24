@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://e4uidd6tr1p0"]
+[gd_scene load_steps=19 format=3 uid="uid://e4uidd6tr1p0"]
 
 [ext_resource type="Script" path="res://скрипты/node_2d.gd" id="1_35x5d"]
 [ext_resource type="Texture2D" uid="uid://560s0ga5mm0i" path="res://картинки/проба.png" id="2_s3838"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://crbdc81glv1b8" path="res://платформа_земли.tscn" id="9_hd1ai"]
 [ext_resource type="PackedScene" uid="uid://new8lkp2ebs3" path="res://boss.tscn" id="9_ubmpp"]
 [ext_resource type="PackedScene" uid="uid://qa11qgecvsku" path="res://стена_для_мобов.tscn" id="10_iq7rn"]
+[ext_resource type="AudioStream" uid="uid://coo6wo5karn44" path="res://Gorillaz - Feel good inc. (Gachi mix).mp3" id="11_ilxnu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jy7b5"]
 texture = ExtResource("2_s3838")
@@ -2302,6 +2303,10 @@ sources/0 = SubResource("TileSetAtlasSource_c0n47")
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_35x5d")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_ilxnu")
+autoplay = true
 
 [node name="TileMap" type="TileMap" parent="."]
 visible = false

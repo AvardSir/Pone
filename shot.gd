@@ -10,6 +10,10 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 
 func _on_body_entered(body):
-	if  "BOSS" or "gacha" in body.name:
+	print("in bod")
+	if	"gacha" or "BOSS"  in body.name:
+		body.kill() 
+		queue_free() 
+	elif "gacha_seat"  in body.name:
 		body.kill() 
 		queue_free() 

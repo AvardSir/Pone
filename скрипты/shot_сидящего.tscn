@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dl8u4iacd4i04"]
+
+[ext_resource type="Script" path="res://скрипты/shot_сидящего.gd" id="1_dwy34"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_po0fq"]
+load_path = "res://.godot/imported/снаряд_сидящего.png-2e54a621bffd6aa4e28f6bdf418e2811.ctex"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_md5iv"]
+radius = 32.311
+
+[node name="shot_сидящего" type="Area2D"]
+rotation = 3.14159
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_dwy34")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-15, 4.00003)
+scale = Vector2(0.388101, -0.477322)
+texture = SubResource("CompressedTexture2D_po0fq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_md5iv")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered" flags=18]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited" flags=18]

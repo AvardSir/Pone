@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://dexv32xts0ii5"]
+
+[ext_resource type="Texture2D" uid="uid://c6sp4v2be7jos" path="res://1614579579_68-p-tablichka-na-belom-fone-95.png" id="1_h4s4i"]
+[ext_resource type="Script" path="res://знак_с_сообщением.gd" id="1_jd25m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_draw6"]
+size = Vector2(975, 587)
+
+[sub_resource type="FontVariation" id="FontVariation_cs0ds"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1ol5t"]
+line_spacing = 20.0
+font = SubResource("FontVariation_cs0ds")
+font_size = 70
+font_color = Color(1, 0, 1, 1)
+
+[node name="StaticBody2D" type="StaticBody2D"]
+script = ExtResource("1_jd25m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(477.5, 283.5)
+shape = SubResource("RectangleShape2D_draw6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(451, 279)
+scale = Vector2(0.335547, 0.335547)
+texture = ExtResource("1_h4s4i")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 116.0
+offset_top = -831.0
+offset_right = 849.0
+offset_bottom = 353.0
+text = "мир был счастлив и мил, до того     как... появились 
+они.... 
+чады..."
+label_settings = SubResource("LabelSettings_1ol5t")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+uppercase = true

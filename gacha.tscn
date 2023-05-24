@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b31bf6wbll4ra"]
+[gd_scene load_steps=15 format=3 uid="uid://b31bf6wbll4ra"]
 
-[ext_resource type="Texture2D" uid="uid://bg2j84ithb0q4" path="res://картинки/3.png" id="2_wqwix"]
+[ext_resource type="Texture2D" uid="uid://cmk08vveo8q3m" path="res://2.png" id="2_m75ga"]
 [ext_resource type="Texture2D" uid="uid://bxbk34nk86vrl" path="res://5be164e80a0b2166e8722a69.png" id="2_wslim"]
-[ext_resource type="Texture2D" uid="uid://cmk08vveo8q3m" path="res://картинки/2.png" id="3_77eji"]
+[ext_resource type="Texture2D" uid="uid://bg2j84ithb0q4" path="res://3.png" id="3_nlyfa"]
 [ext_resource type="Texture2D" uid="uid://c3hgs7b216py" path="res://картинки/1.png" id="4_nr8uk"]
 [ext_resource type="AudioStream" uid="uid://coo6wo5karn44" path="res://Gorillaz - Feel good inc. (Gachi mix).mp3" id="5_3b2il"]
 
@@ -30,8 +30,13 @@ func kill():
 	$AnimatedSprite2D.play(\"dead\")
 	$colusion_gacha.disabled=true
 	$colusion_gacha.queue_free()
-func _physics_process(delta):
 	
+const SHOT_evil=preload(\"res://скрипты/shot_сидящего.tscn\")	
+
+func _physics_process(delta):
+		
+		
+		
 		
 	#$AnimatedSprite.play(\"walk\")
 	velocity.y += (gravity * delta)
@@ -67,23 +72,58 @@ func _on_area_2d_body_entered(body):
 	if \"fluter\"==body.name:
 		body.dead()
 	pass # Replace with function body.
+
+func _on_animated_sprite_2d_animation_finished():
+	var shott=SHOT_evil.instantiate()
+	
+	shott.direction=sign($Node2D.position.x)
+	shott.position=$Node2D.global_position
+	get_parent().add_child(shott)
+	pass # Replace with function body.
+
+func _on___body_entered(body):
+	if body.name==\"fluter\":
+		$AnimatedSprite2D.play(\"shot\")
+	pass # Replace with function body.
+
+	#AnimatedSprite2D.play
+	
 "
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0lw62"]
+load_path = "res://.godot/imported/1.png-d0b53a471f9bf788dc7791c16ed13058.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_73oma"]
+load_path = "res://.godot/imported/2.png-e7feabe988266fc192d5e39231c3b044.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3q8qo"]
+load_path = "res://.godot/imported/3.png-f95b4f13edc77364efcf6e55e02a84ba.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_oj4bo"]
+load_path = "res://.godot/imported/4.png-a267ef52e370e7f076580a1fd2022cf6.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v5qtl"]
+load_path = "res://.godot/imported/5.png-9619175990c3f70d51b9a96138bfdf8f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x2x2w"]
+load_path = "res://.godot/imported/сидит.png-dc55b8f37d9bef0fd7901816faeb8085.ctex"
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_mxdmr"]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("4_nr8uk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_77eji")
+"texture": ExtResource("2_m75ga")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_wqwix")
+"texture": ExtResource("3_nlyfa")
 }],
 "loop": false,
 "name": &"dead",
-"speed": 2.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -91,6 +131,29 @@ animations = [{
 }],
 "loop": true,
 "name": &"live",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_0lw62")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_73oma")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_3q8qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_oj4bo")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_v5qtl")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_x2x2w")
+}],
+"loop": false,
+"name": &"shot",
 "speed": 5.0
 }]
 
@@ -104,7 +167,7 @@ script = SubResource("GDScript_dayng")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mxdmr")
-animation = &"dead"
+animation = &"live"
 
 [node name="Area2D" type="Area2D" parent="."]
 

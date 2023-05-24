@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://bqxwewj6vq3ve"]
+
+[ext_resource type="Script" path="res://сундук.gd" id="1_6wjhd"]
+[ext_resource type="Texture2D" uid="uid://8of30vv6de06" path="res://закрытый.png" id="2_v4sua"]
+[ext_resource type="Texture2D" uid="uid://bef6j0bdhcics" path="res://открытый.png" id="3_p8t44"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_66t2v"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jgqvb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_v4sua")
+}],
+"loop": true,
+"name": &"сундук_закрытый",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_p8t44")
+}],
+"loop": true,
+"name": &"сундук_открытый",
+"speed": 5.0
+}]
+
+[node name="сундук" type="Area2D"]
+script = ExtResource("1_6wjhd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(11.4978, 11.4978)
+shape = SubResource("RectangleShape2D_66t2v")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.472, 0)
+sprite_frames = SubResource("SpriteFrames_jgqvb")
+animation = &"сундук_открытый"
+
+[node name="первый" type="Node2D" parent="."]
+position = Vector2(0, -78)
+scale = Vector2(2.35226, -10.1116)
+
+[node name="второй" type="Node2D" parent="."]
+position = Vector2(-57, -78)
+scale = Vector2(2.35226, -10.1116)
+
+[node name="третий" type="Node2D" parent="."]
+position = Vector2(57, -78)
+scale = Vector2(2.35226, -10.1116)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

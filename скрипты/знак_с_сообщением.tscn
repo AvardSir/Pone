@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://btbl3ferjlox0"]
+
+[ext_resource type="Script" path="res://знак_с_сообщением.gd" id="1_j4jg8"]
+[ext_resource type="Texture2D" uid="uid://c6sp4v2be7jos" path="res://1614579579_68-p-tablichka-na-belom-fone-95.png" id="2_ntini"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_31us1"]
+size = Vector2(975, 587)
+
+[sub_resource type="FontVariation" id="FontVariation_4fxji"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_77gje"]
+line_spacing = 20.0
+font = SubResource("FontVariation_4fxji")
+font_size = 70
+font_color = Color(1, 0, 1, 1)
+
+[node name="знак_с_сообщением" type="Area2D"]
+scale = Vector2(0.213701, 0.213701)
+script = ExtResource("1_j4jg8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(477.5, 283.5)
+shape = SubResource("RectangleShape2D_31us1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(451, 279)
+scale = Vector2(0.335547, 0.335547)
+texture = ExtResource("2_ntini")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 116.0
+offset_top = -831.0
+offset_right = 849.0
+offset_bottom = 353.0
+text = "мир был счастлив и мил, до того     как... появились 
+они.... 
+чады..."
+label_settings = SubResource("LabelSettings_77gje")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+uppercase = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

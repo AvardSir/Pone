@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://po3t21ayw1k1"]
+
+[ext_resource type="Script" path="res://портал.gd" id="1_ge80i"]
+[ext_resource type="Texture2D" uid="uid://cgjrf5j23t5th" path="res://портал.png" id="2_sx4iy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gwiyo"]
+radius = 97.0
+height = 338.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i04vo"]
+atlas = ExtResource("2_sx4iy")
+region = Rect2(91, 173, 190, 631)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wded"]
+atlas = ExtResource("2_sx4iy")
+region = Rect2(281, 173, 190, 631)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r13ls"]
+atlas = ExtResource("2_sx4iy")
+region = Rect2(471, 173, 190, 631)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4alb"]
+atlas = ExtResource("2_sx4iy")
+region = Rect2(661, 173, 190, 631)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qtteu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i04vo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wded")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r13ls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4alb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="портал" type="Area2D"]
+script = ExtResource("1_ge80i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_gwiyo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, 115)
+sprite_frames = SubResource("SpriteFrames_qtteu")
+frame_progress = 0.10194
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

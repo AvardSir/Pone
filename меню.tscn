@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b62f2yrot3lvi"]
+[gd_scene load_steps=3 format=3 uid="uid://b62f2yrot3lvi"]
 
 [ext_resource type="Script" path="res://Button.gd" id="1_ui2gm"]
+[ext_resource type="Texture2D" uid="uid://dl5t0ilmao0fs" path="res://рикардо.jpg" id="2_n7oc5"]
 
 [node name="меню" type="Control"]
 layout_mode = 3
@@ -33,4 +34,12 @@ layout_mode = 2
 text = "new game"
 script = ExtResource("1_ui2gm")
 
+[node name="cum_slayer" type="Button" parent="buttons"]
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 2
+text = "cum_slayer?????"
+icon = ExtResource("2_n7oc5")
+flat = true
+
 [connection signal="pressed" from="buttons/new_game" to="buttons/new_game" method="_on_pressed"]
+[connection signal="pressed" from="buttons/cum_slayer" to="buttons/new_game" method="_on_new_game_2_pressed"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3mrn7368w3ns"]
+
+[ext_resource type="Script" path="res://ключ.gd" id="1_m4qes"]
+[ext_resource type="Texture2D" uid="uid://dv6ikkvodcnx0" path="res://скрипты/ключ.png" id="2_4ti5s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nhiwk"]
+
+[node name="ключ" type="Area2D"]
+script = ExtResource("1_m4qes")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(6.77136, 6.77136)
+shape = SubResource("CircleShape2D_nhiwk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, -119)
+texture = ExtResource("2_4ti5s")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

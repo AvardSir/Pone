@@ -14,6 +14,7 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body):
 	if "fluter" in body.name:
+		print('g')
 		body.add_coin()
 		queue_free()
 	pass # Replace with function body.

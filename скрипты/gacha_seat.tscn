@@ -1,0 +1,107 @@
+[gd_scene load_steps=15 format=3 uid="uid://d04ca8ku74sc2"]
+
+[ext_resource type="Script" path="res://скрипты/gacha_seat.gd" id="1_b4gco"]
+[ext_resource type="Texture2D" uid="uid://dw3oxs2txwxqe" path="res://сид 3/смерт_сидщего/1.png" id="2_7p6vg"]
+[ext_resource type="Texture2D" uid="uid://c4r0dg2ghr7np" path="res://сид 3/смерт_сидщего/2.png" id="3_n5quv"]
+[ext_resource type="Texture2D" uid="uid://ban5g0v3ex2ll" path="res://сид 3/смерт_сидщего/3.png" id="4_w7s6p"]
+[ext_resource type="Texture2D" uid="uid://dx1lcms0ic8j8" path="res://сид 3/смерт_сидщего/5.png" id="5_dscym"]
+[ext_resource type="Texture2D" uid="uid://blwdapjvg1u2a" path="res://сид 3/сидит.png" id="6_57mpi"]
+[ext_resource type="Texture2D" uid="uid://tmf7322eaqy2" path="res://сид 3/1.png" id="7_3c7c2"]
+[ext_resource type="Texture2D" uid="uid://cwkvm66gsl8cm" path="res://сид 3/2.png" id="8_vvxre"]
+[ext_resource type="Texture2D" uid="uid://cohmdt2ifl4hy" path="res://сид 3/3.png" id="9_uiqxe"]
+[ext_resource type="Texture2D" uid="uid://bw5ejw3sqg0tp" path="res://сид 3/4.png" id="10_tn08k"]
+[ext_resource type="Texture2D" uid="uid://cnxptbbvso7r2" path="res://сид 3/5.png" id="11_sqnb1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3qi4e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7p6vg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_n5quv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_w7s6p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dscym")
+}],
+"loop": false,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_57mpi")
+}],
+"loop": false,
+"name": &"live",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_3c7c2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_vvxre")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_uiqxe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_tn08k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_sqnb1")
+}],
+"loop": false,
+"name": &"shot",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sb1rv"]
+size = Vector2(391, 320)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7wno"]
+size = Vector2(991, 20)
+
+[node name="gacha_seat" type="CharacterBody2D"]
+scale = Vector2(0.448307, 0.448307)
+collision_layer = 13
+collision_mask = 13
+script = ExtResource("1_b4gco")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3qi4e")
+animation = &"shot"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(28.5, -10)
+shape = SubResource("RectangleShape2D_sb1rv")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(30, -11)
+scale = Vector2(1.03785, 1.03785)
+shape = SubResource("RectangleShape2D_sb1rv")
+
+[node name="space_for_player" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="space_for_player"]
+position = Vector2(628.45, -11.9218)
+scale = Vector2(1.26702, -11.6329)
+shape = SubResource("RectangleShape2D_k7wno")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(143, -87)
+
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="space_for_player" to="." method="_on_area_2d_2_body_entered"]

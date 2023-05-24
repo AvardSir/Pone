@@ -1,8 +1,12 @@
 extends Node2D
 
-
+var first_level=true
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#if first_level:
+	find_child("AudioStreamPlayer2D").play()
+	#$AudioStreamPlayer2D.play()
+		#first_level=false
 	pass # Replace with function body.
 func dead_charecter():
 	$stats/CanvasLayer/retry.visible=true
